@@ -1,0 +1,34 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="well well-md a">
+        <fieldset>
+          <legend class="text-center">English Words</legend>
+        </fieldset>
+        <table>
+          <thead>
+            <tr>
+              <th>Word</th>
+              <th>Meanings</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @words.each do |word| %>
+              <tr>
+                <td><%= word.term %></td>
+                <td><%= word.meanings.collect(&:definition).join(",") %></td>
+                <td><%= link_to 'Edit', edit_word_path(word) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+        <br>
+
+        <%= link_to 'New Word', new_word_path %>
+      </div>
+    </div>
+  </div>
+</div>
