@@ -19,7 +19,7 @@
             <% @words.each do |word| %>
               <tr>
                 <td><%= word.term %></td>
-                <td><%= word.meanings.collect(&:definition).join(",") %></td>
+                <td><%= word.meanings.collect(&:definition).join(",").gsub(".","") %></td>
                 <td><%= word.examples.collect(&:sentence).join(",") %></td>
                 <td><%= link_to 'Edit', edit_word_path(word) %></td>
               </tr>
