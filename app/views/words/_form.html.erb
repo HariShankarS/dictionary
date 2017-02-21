@@ -23,7 +23,14 @@
         <%= link_to_add_association 'Add meaning', f, :meanings, class: "btn btn-raised btn-info"%><br><br>
       </div>
     </div>
-
+    <div id="examples">
+      <%= f.fields_for :examples do |example| %>
+        <%= render 'example_fields', f: example %>
+      <% end -%>
+      <div class="links">
+        <%= link_to_add_association 'Add example', f, :examples, class: "btn btn-raised btn-success"%><br><br>
+      </div>
+    </div>
     <div class="actions">
       <%= f.submit class: "btn btn-raised btn-primary" %>
     </div><br>
