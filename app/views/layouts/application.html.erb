@@ -26,17 +26,11 @@
           <form class="navbar-form navbar-left">
             <%= form_tag words_path, :method => 'get' do %>
               <%= text_field_tag :search, params[:search],class: "form-control transparent-input" %>
-              <%= submit_tag "Search",class: "btn btn-raised btn-info" %>
+              <%= submit_tag "Search",class: "btn btn-raised btn-info search" %>
             <% end %>
           </form>
           <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-              <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown
-                <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><%= link_to "New Word",new_word_path %></li>
-              </ul>
-            </li>
+            <li><%= link_to "New Word",new_word_path %></li>
           </ul>
         </div>
       </div>
