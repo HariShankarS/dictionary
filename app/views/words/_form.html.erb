@@ -15,7 +15,6 @@
       <%= f.label :term %>
       <%= f.text_field :term, :class => "form-control" %>
     </div><br>
-    <h3>Meanings</h3>
     <div id="meanings">
       <%= f.fields_for :meanings do |meaning| %>
         <%= render 'meaning_fields', f: meaning %>

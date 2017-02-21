@@ -18,7 +18,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="javascript:void(0)">Dictionary</a>
+          <%= link_to "Dictionary",words_path, class: "navbar-brand" %>
         </div>
         <div class="navbar-collapse collapse navbar-warning-collapse">
           <ul class="nav navbar-nav">
@@ -34,7 +34,7 @@
               <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown
                 <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="javascript:void(0)">Action</a></li>
+                <li><%= link_to "New Word",new_word_path %></li>
               </ul>
             </li>
           </ul>
