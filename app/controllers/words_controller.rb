@@ -7,7 +7,7 @@ class WordsController < ApplicationController
     if params[:search].present?
       @words = Word.where(["term ILIKE ?","%#{params[:search]}%"])
     else
-      @words = Word.all
+      @words = Word.all.order("created_at DESC")
     end
   end
 
