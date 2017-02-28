@@ -10,7 +10,11 @@ class WordsController < ApplicationController
       @words = Word.all.order("created_at DESC")
     end
   end
-
+  
+  def alphabetical_order
+    @words = Word.all.order("term ASC")
+    render 'index'
+  end
   # GET /words/1
   # GET /words/1.json
   def show
