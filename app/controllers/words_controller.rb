@@ -5,7 +5,7 @@ class WordsController < ApplicationController
   # GET /words.json
   def index
     if params[:search].present?
-      @words = Word.joins(:meanings).where(["words.term ILIKE ? or meanings.definition ILIKE ?", "%#{params[:search]}%", "%#{params[:search]}%"])
+      @words = Word.joins(:meanings).where("words.term ILIKE ? or meanings.definition ILIKE ?", "%#{params[:search]}%", "%#{params[:search]}%").uniq
     else
       @words = Word.all.order("created_at DESC")
     end
