@@ -14,6 +14,8 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap-material-design/";
+@import "ripples";
 
 table {
     font-family: arial, sans-serif;
@@ -27,6 +29,26 @@ td, th {
     padding: 8px;
 }
 .navbar .navbar-toggle .icon-bar {background-color: inherit;border: 1px solid;}
-.search {
-	margin-top: 5px;
+.navbar-form {
+  margin-top: 0px !important;
+}
+.word {
+  font-family: 'Cherry Cream Soda';
+  color: #f0ad4e;
+}
+.meanings {
+  font-family: Sniglet !important; 
+} 
+.examples {   
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: bolder;
+}
+.example-title {
+  font-family: Arial, Helvetica, sans-serif;  
+  color: #FAAC58;
+}
+i {
+  padding-right: 10px;
+  font-size: 14px !important;
+  color: #D8D8D8;
 }

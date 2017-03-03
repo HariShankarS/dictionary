@@ -1,30 +1,37 @@
 <div class="container-fluid">
   <div class="col-md-10 col-md-offset-1">
-    <legend class="text-center">English Words</legend>
-    <div class="table-responsive">
-      <table>
-        <thead>
-          <tr>
-            <th>Word</th>
-            <th>Meanings</th>
-            <th>Examples</th>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @words.each do |word| %>
-            <tr>
-              <td><%= word.term %></td>
-              <td><%= word.meanings.collect(&:definition).join(",").gsub(".","") %></td>
-              <td><%= word.examples.collect(&:sentence).join(",") %></td>
-              <td><%= link_to 'Edit', edit_word_path(word) %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <br>
-    </div>
-    <%= link_to 'New Word', new_word_path %>
+    <% @words.each do |word| %>
+      <div class="col-md-6 col-md-offset-3">
+        <div class="well well-md" id="well-<%=word.id%>">
+          <button type="button" class="close" data-target="#well-<%=word.id%>" data-dismiss="alert" aria-hidden="true">×</button>
+          <div style="text-align: right;">
+            <%= link_to edit_word_path(word) do %>
+              <i class="material-icons">mode_edit</i> 
+            <% end %>
+          </div>
+          <p class="word"><%= word.term.capitalize %> :</p>
+          <p>
+            <% word.meanings.each do |meaning| %>
+              <ul>
+                <li class="meanings"><%= meaning.definition.gsub(".","") %></li>
+              </ul>
+            <% end -%>
+          </p>
+          <% if word.examples.present? %>
+            <p class="example-title">
+              Examples :
+            </p>
+            <p>
+              <% word.examples.each do |eg| %>
+                <ul>
+                  <li class="examples"><%= eg.sentence %></li>
+                </ul>
+              <% end -%>
+            </p>
+          <% end -%>
+          
+        </div>
+      </div>  
+    <% end %><br>
   </div>
 </div>

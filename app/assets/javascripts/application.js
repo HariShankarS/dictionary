@@ -16,3 +16,8 @@
 //= require turbolinks
 //= require cocoon
 //= require_tree .
+
+$(document).ready(function(){
+  $('[data-toggle="popover"]').popover();
+  $.material.init();
+});
