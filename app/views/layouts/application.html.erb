@@ -25,7 +25,7 @@
         </div>
         <div class="navbar-collapse collapse navbar-inverse-collapse">
           <form class="navbar-form navbar-left">
-            <%= form_for(words_path, method: :get) do %>
+            <%= form_tag('/https://dictionary-english-telugu.herokuapp.com/', method: :get) do %>
               <%= text_field_tag :search, params[:search],class: "form-control transparent-input" %>
               <%= submit_tag "Search",class: "btn btn-raised btn-primary search" %>
             <% end %>
