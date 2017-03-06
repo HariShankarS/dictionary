@@ -25,7 +25,7 @@
         </div>
         <div class="navbar-collapse collapse navbar-inverse-collapse">
           <form class="navbar-form navbar-left">
-            <%= form_tag('/words', method: :get) do %>
+            <%= form_tag('/words', method: :post) do %>
               <%= text_field_tag :search, params[:search],class: "form-control transparent-input" %>
               <%= submit_tag "Search",class: "btn btn-raised btn-primary search" %>
             <% end %>
