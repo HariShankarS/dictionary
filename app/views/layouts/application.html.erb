@@ -24,12 +24,12 @@
           <%= link_to "Dictionary",words_path, class: "navbar-brand" %>
         </div>
         <div class="navbar-collapse collapse navbar-inverse-collapse">
-          <form class="navbar-form navbar-left">
-            <%= form_tag('/https://dictionary-english-telugu.herokuapp.com/', method: :get) do %>
+          <div class="navbar-form navbar-left">
+            <%= form_tag('/words', method: :get) do %>
               <%= text_field_tag :search, params[:search],class: "form-control transparent-input" %>
               <%= submit_tag "Search",class: "btn btn-raised btn-primary search" %>
             <% end %>
-          </form>
+          </div>
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "Alphabetical Order",alphabetical_order_words_path %></li>
             <li><%= link_to "New Word",new_word_path %></li>
