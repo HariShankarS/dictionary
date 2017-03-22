@@ -9,6 +9,7 @@ class WordsController < ApplicationController
       @words_definitions = Word.joins(:meanings).where("meanings.definition ILIKE ?","%#{params[:search]}%").uniq.paginate(page: params[:page], per_page: 4)
     else
       @words = Word.all.order("created_at DESC").paginate(page: params[:page], per_page: 10)
+      @words_definitions = []
     end
   end
   
