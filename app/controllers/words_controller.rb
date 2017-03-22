@@ -5,11 +5,9 @@ class WordsController < ApplicationController
   # GET /words.json
   def index
     if params[:search].present?
-      @words = Word.joins(:meanings).where("words.term ILIKE ?", "%#{params[:search]}%")
-      @words_definitions = Word.joins(:meanings).where("meanings.definition ILIKE ?","%#{params[:search]}%").uniq
+      @words = Word.joins(:meanings).where("words.term ILIKE ? or meanings.definition ILIKE ?", "%#{params[:search]}%", "%#{params[:search]}%").uniq.paginate(page: params[:page], per_page: 4)
     else
       @words = Word.all.order("created_at DESC").paginate(page: params[:page], per_page: 10)
-      @words_definitions = []
     end
   end
   
