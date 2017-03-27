@@ -7,7 +7,6 @@ end
 gem 'rails', '~> 5.0.1'
 gem 'pg'
 gem 'puma', '~> 3.0'
-gem 'sass-rails', '~> 5.0'
 gem 'therubyracer', platforms: :ruby
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
@@ -16,10 +15,12 @@ gem 'jbuilder', '~> 2.5'
 gem "cocoon"
 gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.1'
+gem 'rubyzip', '~> 1.1.0'
+gem 'axlsx', '2.1.0.pre'
+gem 'axlsx_rails'
 
 group :development, :test do
   gem 'byebug', platform: :mri
-  gem 'sqlite3'
 end
 
 group :development do

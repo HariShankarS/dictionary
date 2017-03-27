@@ -9,6 +9,16 @@ class WordsController < ApplicationController
     else
       @words = Word.all.order("created_at DESC").paginate(page: params[:page], per_page: 10)
     end
+    respond_to do |format|
+      format.html
+      format.csv {
+        csv_data = generate_csv_data(@words, { headers: ['Word','Meanings','Examples']}) { |word| 
+          [word.term, word.meanings.collect(&:definition), word.examples.collect(&:sentence)] 
+        }
+        send_data csv_data
+      }
+      format.xlsx
+    end
   end
   
   def alphabetical_order
@@ -67,6 +77,9 @@ class WordsController < ApplicationController
       format.html { redirect_to words_url, notice: 'Word was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def mapselect    
   end
 
   private

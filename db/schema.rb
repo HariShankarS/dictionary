@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170221064124) do
+ActiveRecord::Schema.define(version: 20170224170150) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "active_admin_comments", force: :cascade do |t|
+    t.string   "namespace"
+    t.text     "body"
+    t.string   "resource_id",   null: false
+    t.string   "resource_type", null: false
+    t.string   "author_type"
+    t.integer  "author_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
+    t.index ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
+  end
 
   create_table "examples", force: :cascade do |t|
     t.string   "sentence"
@@ -24,7 +41,16 @@ ActiveRecord::Schema.define(version: 20170221064124) do
     t.integer  "word_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["word_id"], name: "index_meanings_on_word_id"
+    t.index ["word_id"], name: "index_meanings_on_word_id", using: :btree
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "cans"
+    t.string   "address"
+    t.string   "water_brand"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "state"
   end
 
   create_table "words", force: :cascade do |t|
@@ -33,4 +59,5 @@ ActiveRecord::Schema.define(version: 20170221064124) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "meanings", "words"
 end
