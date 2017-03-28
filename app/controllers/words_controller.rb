@@ -17,7 +17,6 @@ class WordsController < ApplicationController
         }
         send_data csv_data
       }
-      format.xlsx
     end
   end
   
@@ -69,6 +68,17 @@ class WordsController < ApplicationController
     end
   end
 
+  def load_json
+  end
+
+  def save_json
+    require 'csv'    
+
+    CSV.foreach(json_params[:attachment].path,headers: true) do |row|
+      byebug
+      Word.create!(row.to_hash)
+    end
+  end
   # DELETE /words/1
   # DELETE /words/1.json
   def destroy
@@ -91,5 +101,9 @@ class WordsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def word_params
     params.require(:word).permit(:term, meanings_attributes: [:id, :definition, :_destroy], examples_attributes: [:id, :sentence, :_destroy])
+  end
+
+  def json_params
+    params.permit(:attachment)
   end
 end
