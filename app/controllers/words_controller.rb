@@ -12,7 +12,7 @@ class WordsController < ApplicationController
     respond_to do |format|
       format.html
       format.csv {
-        csv_data = generate_csv_data(Word.all.order("created_at ASC"), { headers: ['Word','Meanings','Examples']}) { |word| 
+        csv_data = generate_csv_data(Word.all.order("created_at ASC"), { headers: ['term','meanings','examples']}) { |word| 
           [word.term, word.meanings.collect(&:definition).join(","), word.examples.collect(&:sentence).join(",")] 
         }
         send_data csv_data
@@ -72,11 +72,18 @@ class WordsController < ApplicationController
   end
 
   def save_json
-    require 'csv'    
-
-    CSV.foreach(json_params[:attachment].path,headers: true) do |row|
-      byebug
-      Word.create!(row.to_hash)
+    require 'csv'
+    CSV.foreach(json_params[:attachment].path,headers: true, :header_converters => :symbol, :converters => :all) do |row|
+      h = row.to_hash
+      w = Word.create!(:term => h[:term])
+      h[:meanings].split(",").each do |meaning|
+        w.meanings.create(:definition => meaning)
+      end
+      if h[:examples].present?
+        h[:examples].split(",").each do |example|
+          w.examples.create(:sentence => example)
+        end
+      end
     end
   end
   # DELETE /words/1
