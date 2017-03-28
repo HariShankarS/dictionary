@@ -4,6 +4,7 @@ lock "3.8.0"
 set :application, "dictionary"
 set :repo_url, "git@github.com:SHariShankar/dictionary.git"
 set :deploy_to, '/var/www/dictionary'
+set :rvm_ruby_version, '2.3.0@dictionary'
 set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
 set :format, :pretty
