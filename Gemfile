@@ -34,4 +34,11 @@ group :production do
   gem 'uglifier'
 end
 
+gem 'unicorn'
+group :development do
+  gem 'capistrano-rails'
+  gem 'capistrano-rvm'
+  gem 'capistrano3-unicorn'
+end
+
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
