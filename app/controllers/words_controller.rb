@@ -13,7 +13,7 @@ class WordsController < ApplicationController
       format.html
       format.csv {
         csv_data = generate_csv_data(Word.all.order("created_at ASC"), { headers: ['Word','Meanings','Examples']}) { |word| 
-          [word.term, word.meanings.collect(&:definition), word.examples.collect(&:sentence)] 
+          [word.term, word.meanings.collect(&:definition).join(","), word.examples.collect(&:sentence).join(",")] 
         }
         send_data csv_data
       }
